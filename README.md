@@ -42,8 +42,8 @@ Beispiel:
 sed -i '' 's/EMAIL_PLATZHALTER/mail@example.de/g' *.html
 ```
 
-Fehlt noch: die Domain des Medizintechnik-Projekts. Sobald sie feststeht, kann
-sie bei den Projekten `TriARge` und `ems-voice` als Link ergänzt werden.
+Die Projektseite der Medizintechnik-Projekte ist `jar-medical.tech` und bei
+`TriARge` und `ems-voice` sowie im Kontaktblock verlinkt.
 
 ## Veröffentlichen
 
