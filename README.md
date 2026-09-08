@@ -51,3 +51,34 @@ Die Seite läuft auf jedem Webspace, der statische Dateien ausliefert. Für
 GitHub Pages: Repository-Einstellungen → Pages → Branch auswählen; die
 `index.html` liegt bereits im Wurzelverzeichnis. Für eine eigene Domain eine
 Datei `CNAME` mit der Domain anlegen.
+
+## Mit GitHub Pages veröffentlichen
+
+Kostenlos ist GitHub Pages nur für **öffentliche** Repositories — für private
+Repos braucht es GitHub Pro. Zwei Einstellungen im Browser, beides einmalig:
+
+1. **Repository öffentlich schalten**
+   Settings → General → ganz unten „Danger Zone" → *Change repository
+   visibility* → **Public**.
+
+2. **Pages einschalten**
+   Settings → Pages → *Source*: **Deploy from a branch** →
+   Branch `claude/personal-portfolio-site-ga5lsq`, Ordner `/ (root)` → Save.
+
+Nach ein bis zwei Minuten liegt die Seite unter
+
+```
+https://alexanderh2seo4.github.io/Aboutme/
+```
+
+Die Datei `.nojekyll` sorgt dafür, dass GitHub die Dateien unverändert
+ausliefert, statt sie durch Jekyll zu schicken.
+
+**Eigene Domain:** Settings → Pages → *Custom domain* eintragen, beim
+Domain-Anbieter einen CNAME auf `alexanderh2seo4.github.io` setzen und
+„Enforce HTTPS" aktivieren.
+
+**Vor dem Indexieren:** In `index.html` steht vorerst
+`<meta name="robots" content="noindex, follow">`, damit Suchmaschinen die Seite
+nicht mit den Platzhaltern aufnehmen. Die Zeile löschen, sobald die
+Kontaktdaten drin sind.
