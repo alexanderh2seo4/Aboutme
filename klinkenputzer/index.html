@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Klinkenputzer — Trackable Pitch Decks & Data. Live Deck-Analytics, Story & Design on demand, Auslieferung in rund 10 Tagen.">
+  <meta name="color-scheme" content="dark">
+  <!-- Solange die Kontaktdaten auf Slide 7 noch Platzhalter sind: nicht indexieren.
+       Diese eine Zeile in build.py loeschen, sobald LinkedIn und Terminlink stehen. -->
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Klinkenputzer — Trackable Pitch Decks & Data">
+  <meta property="og:description" content="Klinkenputzer — Trackable Pitch Decks & Data. Live Deck-Analytics, Story & Design on demand, Auslieferung in rund 10 Tagen.">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Klinkenputzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<style>
+:root{
+  color-scheme: dark;
+  --ink:#0F1216;
+  --ink-2:#151A20;
+  --ink-3:#1B222A;
+  --line:#28313B;
+  --line-soft:#1F272F;
+  --paper:#ECE9E2;
+  --paper-2:#C3C7CC;
+  --paper-dim:#8D96A1;
+  --brass:#C9A24A;
+  --brass-2:#E0BE6B;
+  --brass-soft:rgba(201,162,74,.14);
+  --drop:#C4593F;
+  --display:"Syne","Trebuchet MS",sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --rail:clamp(1.25rem,6vw,7rem);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--brass);color:#12151A}
+
+/* ---------- deck shell ---------- */
+.deck{
+  height:100svh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  scroll-snap-type:y mandatory;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+}
+.deck::-webkit-scrollbar{display:none}
+.slide{
+  position:relative;
+  min-height:100svh;
+  scroll-snap-align:start;
+  display:grid;
+  align-content:center;
+  gap:clamp(1.5rem,3vh,2.5rem);
+  padding:clamp(4.5rem,9vh,6rem) var(--rail) clamp(4.5rem,9vh,6rem);
+  border-top:1px solid var(--line-soft);
+}
+#s1{border-top:none}
+@media (min-width:900px){
+  .slide{padding-left:clamp(7rem,11vw,11rem);padding-right:clamp(4rem,8vw,9rem)}
+}
+.wrap{width:100%;max-width:1180px;margin:0 auto}
+
+/* ---------- type ---------- */
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--brass);
+  margin:0 0 1.1rem;
+  display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;
+}
+.eyebrow::before{
+  content:"";width:clamp(18px,3vw,44px);height:1px;background:var(--brass);opacity:.7;flex:none;
+}
+h1{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:clamp(2.4rem,6.6vw,5.1rem);
+  line-height:.96;
+  letter-spacing:-.025em;
+  margin:0;
+  text-wrap:balance;
+}
+h2{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(1.9rem,4.6vw,3.3rem);
+  line-height:1.02;
+  letter-spacing:-.02em;
+  margin:0;
+  text-wrap:balance;
+}
+h3{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:1.06rem;
+  letter-spacing:-.01em;
+  margin:0;
+}
+.lead{
+  font-size:clamp(1.02rem,1.5vw,1.22rem);
+  line-height:1.55;
+  color:var(--paper-2);
+  max-width:62ch;
+  margin:0;
+}
+.small{font-size:.92rem;color:var(--paper-dim);max-width:60ch;margin:0}
+strong{color:var(--paper);font-weight:600}
+em{font-style:normal;color:var(--brass-2)}
+
+/* ---------- rail + hud ---------- */
+.railnav{
+  position:fixed;left:clamp(1rem,2.2vw,2.1rem);top:50%;transform:translateY(-50%);
+  display:none;flex-direction:column;gap:.55rem;z-index:20;
+}
+@media (min-width:900px){.railnav{display:flex}}
+.railnav button{
+  all:unset;cursor:pointer;display:grid;grid-template-columns:2.1rem 1fr;align-items:center;
+  gap:.55rem;padding:.2rem .1rem;color:var(--paper-dim);
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;
+}
+.railnav button:hover{color:var(--paper-2)}
+.railnav button[aria-current="true"]{color:var(--brass)}
+.railnav .tick{
+  position:relative;height:2px;width:2.6rem;background:var(--line);overflow:hidden;border-radius:1px;
+}
+.railnav .tick i{
+  position:absolute;inset:0 auto 0 0;width:0%;background:var(--brass);display:block;border-radius:1px;
+}
+.railnav button:focus-visible{outline:1px solid var(--brass);outline-offset:3px}
+
+.hud{
+  position:fixed;right:clamp(1rem,2.4vw,2.2rem);bottom:clamp(1rem,2.4vw,2rem);z-index:20;
+  display:flex;align-items:center;gap:.7rem;
+  padding:.5rem .75rem;border:1px solid var(--line);background:rgba(15,18,22,.82);
+  backdrop-filter:blur(8px);border-radius:2px;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--paper-dim);
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--brass);flex:none;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.hud b{color:var(--paper);font-weight:500}
+.progress{position:fixed;top:0;left:0;right:0;height:2px;background:transparent;z-index:25}
+.progress i{display:block;height:100%;width:0;background:var(--brass)}
+
+/* ---------- plates (Klingelschild motif) ---------- */
+.plate{
+  position:relative;border:1px solid var(--line);background:linear-gradient(180deg,var(--ink-2),var(--ink));
+  border-radius:2px;padding:1.1rem 1.15rem;
+}
+.plate::before,.plate::after{
+  content:"";position:absolute;width:3px;height:3px;border-radius:50%;
+  background:var(--line);top:.5rem;
+}
+.plate::before{left:.5rem}
+.plate::after{right:.5rem}
+
+/* ---------- slide 1 ---------- */
+.hero{display:grid;gap:clamp(1.4rem,3vh,2.2rem)}
+.hero .lead{max-width:56ch}
+.herometa{
+  display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;align-items:center;
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;color:var(--paper-dim);
+  border-top:1px solid var(--line-soft);padding-top:1.1rem;margin-top:.4rem;
+}
+.herometa span.badge{color:var(--brass);border:1px solid var(--brass);padding:.28rem .55rem;border-radius:2px}
+kbd{
+  font-family:var(--mono);font-size:.7rem;border:1px solid var(--line);border-radius:2px;
+  padding:.1rem .35rem;color:var(--paper-2);background:var(--ink-2);
+}
+
+/* ---------- slide 2 ---------- */
+.doorbells{display:grid;gap:.55rem;max-width:720px}
+.bell{
+  display:grid;grid-template-columns:1fr auto;align-items:center;gap:1rem;
+  padding:.95rem 1.1rem;
+}
+.bell p{margin:0;font-size:clamp(.98rem,1.5vw,1.1rem);color:var(--paper-2)}
+.bell .q{font-family:var(--mono);color:var(--drop);font-size:.85rem;letter-spacing:.1em}
+.twocol{display:grid;gap:clamp(1.6rem,4vw,3.2rem);grid-template-columns:1fr}
+@media (min-width:900px){.twocol{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}}
+
+/* ---------- analytics panel ---------- */
+.panel{
+  border:1px solid var(--line);background:var(--ink-2);border-radius:3px;overflow:hidden;
+  align-self:start;
+}
+.panel header{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.7rem .95rem;border-bottom:1px solid var(--line);background:var(--ink-3);
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-dim);
+}
+.panel header .live{display:flex;align-items:center;gap:.45rem;color:var(--brass)}
+.rows{display:grid;gap:.5rem;padding:.95rem}
+.row{
+  display:grid;
+  grid-template-columns:2.1rem minmax(5.5rem,8.5rem) minmax(0,1fr) 3.3rem;
+  gap:.6rem;align-items:center;
+}
+.row .idx{font-family:var(--mono);font-size:.68rem;color:var(--paper-dim);letter-spacing:.1em}
+.row .name{
+  font-size:.8rem;color:var(--paper-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.row .track{position:relative;height:8px;background:var(--line-soft);border-radius:2px;overflow:hidden}
+.row .track i{
+  position:absolute;left:0;top:0;bottom:0;width:0%;
+  background:var(--brass);border-radius:0 4px 4px 0;transition:width .45s ease;
+}
+.row .val{
+  font-family:var(--mono);font-size:.78rem;text-align:right;color:var(--paper);
+  font-variant-numeric:tabular-nums;
+}
+.row[data-active="true"] .idx,.row[data-active="true"] .val,.row[data-active="true"] .name{color:var(--brass)}
+.panel footer{
+  padding:.7rem .95rem;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:.68rem;color:var(--paper-dim);letter-spacing:.06em;
+}
+.featlist{display:grid;gap:1.1rem;margin:0;padding:0;list-style:none;max-width:52ch}
+.featlist li{display:grid;gap:.3rem;padding-left:1.15rem;position:relative}
+.featlist li::before{
+  content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;background:var(--brass);border-radius:50%;
+}
+.featlist p{margin:0;color:var(--paper-dim);font-size:.95rem}
+
+/* ---------- slide 4: intensity ---------- */
+.scale{display:grid;gap:0;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+@media (min-width:820px){.scale{grid-template-columns:repeat(3,1fr)}}
+.step{padding:1.5rem 1.35rem;display:grid;gap:.55rem;align-content:start;background:var(--ink-2);border-top:1px solid var(--line)}
+@media (min-width:820px){.step{border-top:none;border-left:1px solid var(--line)}.step:first-child{border-left:none}}
+.step:first-child{border-top:none}
+.step .meter{display:flex;gap:3px;margin-bottom:.35rem}
+.step .meter s{display:block;width:16px;height:4px;background:var(--line);border-radius:1px;text-decoration:none}
+.step .meter s.on{background:var(--brass)}
+.step p{margin:0;font-size:.95rem;color:var(--paper-dim)}
+.step .tag{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-dim)}
+
+/* ---------- slide 5: sprint ---------- */
+.sprint{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+@media (min-width:820px){.sprint{grid-template-columns:repeat(4,1fr)}}
+.day{background:var(--ink-2);padding:1.4rem 1.25rem;display:grid;gap:.5rem;align-content:start}
+.day .num{font-family:var(--display);font-weight:700;font-size:1.65rem;color:var(--brass);line-height:1}
+.day .num small{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--paper-dim);display:block;margin-bottom:.4rem;font-weight:400}
+.day p{margin:0;font-size:.93rem;color:var(--paper-dim)}
+
+/* ---------- slide 6: deals ---------- */
+.deals{display:grid;gap:.7rem}
+@media (min-width:760px){.deals{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1100px){.deals{grid-template-columns:repeat(4,1fr)}}
+.deal{display:grid;gap:.45rem;align-content:start;min-height:9.5rem}
+.deal .name{font-family:var(--display);font-weight:700;font-size:1.28rem;letter-spacing:-.01em}
+.deal p{margin:0;font-size:.9rem;color:var(--paper-dim)}
+.deal .stage{font-family:var(--mono);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin-top:.1rem}
+
+/* ---------- slide 7 ---------- */
+.closing{display:grid;gap:clamp(1.6rem,4vw,3rem);grid-template-columns:1fr}
+@media (min-width:960px){.closing{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}}
+.contact{display:grid;gap:.55rem;margin-top:.4rem}
+.contact a,.contact span.ph{
+  font-family:var(--mono);font-size:.85rem;letter-spacing:.04em;color:var(--paper-2);
+  border-bottom:1px dashed var(--line);padding-bottom:.35rem;text-decoration:none;
+  display:flex;gap:.75rem;align-items:baseline;
+}
+.contact a:hover{color:var(--brass);border-color:var(--brass)}
+.contact .k{color:var(--paper-dim);min-width:6.5rem;display:inline-block}
+.contact .ph em{color:var(--brass);font-style:normal}
+.report .headline{
+  font-family:var(--display);font-weight:700;font-size:1.05rem;margin:0 0 .2rem;
+}
+.summary{
+  display:grid;gap:.35rem;padding:.95rem;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--paper-dim);
+}
+.summary b{color:var(--brass);font-weight:500}
+.footnote{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:var(--paper-dim);
+  border-top:1px solid var(--line-soft);padding-top:1rem;margin:0;
+}
+@media (max-width:899px){
+  .deck{scroll-snap-type:y proximity}
+  .slide{padding-bottom:5.5rem}
+  .hud{font-size:.64rem;padding:.42rem .6rem;gap:.5rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .deck{scroll-behavior:auto}
+}
+</style>
+
+<div class="progress"><i id="prog"></i></div>
+
+<nav class="railnav" id="rail" aria-label="Slides"></nav>
+
+<div class="hud" role="status" aria-live="off">
+  <span class="dot" aria-hidden="true"></span>
+  <span>SLIDE <b id="hudslide">01</b></span>
+  <span>·</span>
+  <span>LESEZEIT <b id="hudtime">0.0s</b></span>
+</div>
+
+<main class="deck" id="deck">
+
+  <!-- 1 -->
+  <section class="slide" id="s1" data-name="Titel">
+    <div class="wrap hero">
+      <p class="eyebrow">Trackable Pitch Decks &amp; Data</p>
+      <h1>Wir putzen Klinken.<br>Ihr seht, wer aufmacht.</h1>
+      <p class="lead">Klinkenputzer macht sichtbar, was mit eurem Pitch Deck passiert, sobald es beim VC liegt — Slide für Slide, Sekunde für Sekunde. Plus Story und Design in der Intensität, die ihr gerade braucht.</p>
+      <div class="herometa">
+        <span class="badge">München · 14.–19.09.</span>
+        <span>Diese Seite trackt gerade deine eigene Lesezeit</span>
+        <span>Navigation: <kbd>↓</kbd> <kbd>↑</kbd> <kbd>Space</kbd></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" data-name="Blindflug">
+    <div class="wrap twocol">
+      <div style="display:grid;gap:1.4rem">
+        <p class="eyebrow">Das Problem</p>
+        <h2>Deck raus.<br>Funkstille.</h2>
+        <p class="lead">Zwischen „Deck ist raus“ und „Wir melden uns“ liegt der teuerste blinde Fleck im Fundraising. Ihr optimiert ein Dokument, dessen Wirkung ihr nie zu sehen bekommt — und ratet euch durch die nächste Version.</p>
+      </div>
+      <div class="doorbells">
+        <div class="plate bell"><p>Wurde das Deck überhaupt geöffnet?</p><span class="q">?</span></div>
+        <div class="plate bell"><p>Welche Slide hat sie verloren?</p><span class="q">?</span></div>
+        <div class="plate bell"><p>War es das Problem, die Traction oder das Team?</p><span class="q">?</span></div>
+        <div class="plate bell"><p>Weitergeleitet ans Partner-Meeting — oder tot im Postfach?</p><span class="q">?</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" data-name="Deck-Analytics">
+    <div class="wrap twocol">
+      <div style="display:grid;gap:1.4rem">
+        <p class="eyebrow">Unser Hauptfokus</p>
+        <h2>Live Deck-Analytics</h2>
+        <ul class="featlist">
+          <li><h3>Wer öffnet</h3><p>Ihr seht, wann euer Deck geöffnet wird und wie oft jemand zurückkommt.</p></li>
+          <li><h3>Welche Slide wie lange</h3><p>Verweildauer pro Slide in Sekunden — die Slide, die verkauft, und die, die bremst.</p></li>
+          <li><h3>Wo abgesprungen wird</h3><p>Der exakte Absprungpunkt. Ihr wisst, wo die Story reißt, bevor ihr das nächste Deck rausschickt.</p></li>
+          <li><h3>Live bei euch</h3><p>Direkt ins Postfach und ins Dashboard — nicht erst im Wochenreport.</p></li>
+        </ul>
+      </div>
+      <div class="panel report">
+        <header>
+          <span>Deine Session</span>
+          <span class="live"><span class="dot" aria-hidden="true"></span>LIVE</span>
+        </header>
+        <div class="rows" id="rows-live"></div>
+        <footer>Genau dieser Report läuft bei eurem Deck mit — nur eben über eure Investoren. Diese Demo misst nur dich, lokal im Browser, und sendet nichts.</footer>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" data-name="Strategy &amp; Visuals">
+    <div class="wrap" style="display:grid;gap:clamp(1.6rem,3.5vh,2.4rem)">
+      <div style="display:grid;gap:1.1rem;max-width:70ch">
+        <p class="eyebrow">Full Strategy &amp; Visuals — on demand</p>
+        <h2>Ihr wählt die Intensität, nicht das Paket.</h2>
+        <p class="lead">Manche brauchen zwei Stunden Sparring an der Storyline. Andere ein komplettes High-End-Redesign. Wir steigen genau da ein, wo euer Deck gerade steht.</p>
+      </div>
+      <div class="scale">
+        <div class="step">
+          <div class="meter" aria-hidden="true"><s class="on"></s><s></s><s></s><s></s><s></s></div>
+          <span class="tag">Leicht</span>
+          <h3>Storyline-Sparring</h3>
+          <p>Wir gehen euer Deck Slide für Slide durch: Reihenfolge, Argumentationskette, die Stellen, an denen ein VC aussteigt.</p>
+        </div>
+        <div class="step">
+          <div class="meter" aria-hidden="true"><s class="on"></s><s class="on"></s><s class="on"></s><s></s><s></s></div>
+          <span class="tag">Mittel</span>
+          <h3>Research &amp; Substanz</h3>
+          <p>Markt, Wettbewerb, Zahlen und Belege — damit die Story nicht nur gut klingt, sondern der Due-Diligence-Frage standhält.</p>
+        </div>
+        <div class="step">
+          <div class="meter" aria-hidden="true"><s class="on"></s><s class="on"></s><s class="on"></s><s class="on"></s><s class="on"></s></div>
+          <span class="tag">Voll</span>
+          <h3>High-End-Redesign</h3>
+          <p>Komplettes visuelles Redesign des Decks — Layout, Typo, Datenvisualisierung, fertige Files zum Verschicken.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" data-name="10-Day Sprint">
+    <div class="wrap" style="display:grid;gap:clamp(1.6rem,3.5vh,2.4rem)">
+      <div style="display:grid;gap:1.1rem;max-width:70ch">
+        <p class="eyebrow">Prozess</p>
+        <h2>10-Day Sprint</h2>
+        <p class="lead">Schlanker Prozess vom Erstkontakt bis zur fertigen Auslieferung — in rund zehn Tagen. Kein Agentur-Onboarding, keine sechs Feedbackschleifen.</p>
+      </div>
+      <div class="sprint">
+        <div class="day"><span class="num"><small>Tag 0</small>Erstkontakt</span><p>30 Minuten: Wo steht ihr, wen pitcht ihr, was fehlt. Danach wisst ihr, was wir liefern und was es kostet.</p></div>
+        <div class="day"><span class="num"><small>Tag 1</small>Kick-off</span><p>Material, Zahlen und Zugänge einsammeln, Storyline festziehen, Scope fixieren.</p></div>
+        <div class="day"><span class="num"><small>Tag 2–8</small>Bauen</span><p>Story, Research und Design im Wechsel, mit klar getakteten Zwischenständen statt endloser Runden.</p></div>
+        <div class="day"><span class="num"><small>Tag 9–10</small>Auslieferung</span><p>Finale Files plus Tracking-Setup — das Deck geht mit Analytics raus, nicht als stummes PDF.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" data-name="Deals">
+    <div class="wrap" style="display:grid;gap:clamp(1.6rem,3.5vh,2.4rem)">
+      <div style="display:grid;gap:1.1rem;max-width:70ch">
+        <p class="eyebrow">Startup-friendly Deals</p>
+        <h2>Wir kennen den Cashflow-Druck am Anfang.</h2>
+        <p class="lead">Deshalb hängt das Setup an eurer Stage, nicht an unserer Preisliste. Vier Modelle, frei kombinierbar.</p>
+      </div>
+      <div class="deals">
+        <div class="plate deal"><span class="stage">Klassisch</span><span class="name">Cash</span><p>Fixes Honorar für einen klar umrissenen Scope. Kein Abo, keine Bindung.</p></div>
+        <div class="plate deal"><span class="stage">Pre-Seed</span><span class="name">Equity</span><p>Wir gehen mit rein, wenn ihr die Liquidität lieber in Runway steckt.</p></div>
+        <div class="plate deal"><span class="stage">Erfolgsbasiert</span><span class="name">Provision</span><p>Ein Teil der Vergütung hängt am tatsächlich eingesammelten Kapital.</p></div>
+        <div class="plate deal"><span class="stage">Am häufigsten</span><span class="name">Hybrid</span><p>Reduziertes Cash plus Equity oder Provision — die Mischung, die zu eurer Runde passt.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" id="s7" data-name="Team &amp; Kontakt">
+    <div class="wrap closing">
+      <div style="display:grid;gap:1.3rem;align-content:start">
+        <p class="eyebrow">Wer dahintersteckt</p>
+        <h2>Aus eigenem Fundraising-Pain gebaut.</h2>
+        <p class="lead">Mein Co-Founder und ich bauen selbst gerade das erste <strong>AI-native Artist Management für internationale Gen-Z Visual Artists</strong> auf. Wir kennen den Gründer-Alltag und das Blindflug-Gefühl beim Deck-Versand aus erster Hand — genau daraus ist Klinkenputzer entstanden.</p>
+        <p class="lead"><em>14.–19.09. sind wir in München.</em> Wenn ihr gerade fundraised oder einfach Lust auf einen unkomplizierten Kaffee habt: kurze DM reicht.</p>
+        <div class="contact">
+          <a href="mailto:hallo@klinkenputzer.de"><span class="k">E-Mail</span><span>hallo@klinkenputzer.de</span></a>
+          <span class="ph"><span class="k">LinkedIn</span><span><em>[LinkedIn-Profil hier eintragen]</em></span></span>
+          <span class="ph"><span class="k">Kaffee</span><span>München, 14.–19.09. — <em>[Calendly-Link hier eintragen]</em></span></span>
+        </div>
+      </div>
+      <div class="panel report">
+        <header><span>Dein Deck-Report</span><span class="live"><span class="dot" aria-hidden="true"></span>LIVE</span></header>
+        <div class="rows" id="rows-final"></div>
+        <div class="summary">
+          <div>LÄNGSTER HALT · <b id="sum-max">—</b></div>
+          <div>KÜRZESTER HALT · <b id="sum-min">—</b></div>
+          <div>GESAMTE LESEZEIT · <b id="sum-total">0.0s</b></div>
+        </div>
+        <footer>So ein Report landet bei euch, sobald ein Investor euer Deck öffnet.</footer>
+      </div>
+      <p class="footnote" style="grid-column:1/-1">Klinkenputzer · Trackable Pitch Decks &amp; Data · Diese Demo speichert nichts und sendet nichts — alle Werte bleiben in deinem Browser.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var deck = document.getElementById('deck');
+  var slides = Array.prototype.slice.call(deck.querySelectorAll('.slide'));
+  var names = slides.map(function(s){ return s.dataset.name; });
+  var dwell = slides.map(function(){ return 0; });
+  var active = 0;
+  var last = performance.now();
+
+  /* ---- rail ---- */
+  var rail = document.getElementById('rail');
+  slides.forEach(function(s, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.innerHTML = '<span>' + String(i+1).padStart(2,'0') + '</span><span class="tick"><i></i></span>';
+    b.title = names[i];
+    b.setAttribute('aria-label', 'Slide ' + (i+1) + ': ' + names[i]);
+    b.addEventListener('click', function(){ go(i); });
+    rail.appendChild(b);
+  });
+  var railButtons = Array.prototype.slice.call(rail.children);
+
+  /* ---- rows ---- */
+  function buildRows(host){
+    return slides.map(function(s, i){
+      var row = document.createElement('div');
+      row.className = 'row';
+      row.innerHTML =
+        '<span class="idx">' + String(i+1).padStart(2,'0') + '</span>' +
+        '<span class="name"></span>' +
+        '<span class="track"><i></i></span>' +
+        '<span class="val">0.0s</span>';
+      row.querySelector('.name').textContent = names[i];
+      host.appendChild(row);
+      return row;
+    });
+  }
+  var rowsLive = buildRows(document.getElementById('rows-live'));
+  var rowsFinal = buildRows(document.getElementById('rows-final'));
+
+  function fmt(ms){ return (ms/1000).toFixed(1) + 's'; }
+
+  function paint(){
+    var max = Math.max(10000, Math.max.apply(null, dwell));
+    var total = dwell.reduce(function(a,b){ return a+b; }, 0);
+    [rowsLive, rowsFinal].forEach(function(rows){
+      rows.forEach(function(row, i){
+        row.querySelector('.track i').style.width = (dwell[i]/max*100).toFixed(1) + '%';
+        row.querySelector('.val').textContent = fmt(dwell[i]);
+        row.setAttribute('data-active', i === active ? 'true' : 'false');
+      });
+    });
+    railButtons.forEach(function(b, i){
+      b.setAttribute('aria-current', i === active ? 'true' : 'false');
+      b.querySelector('.tick i').style.width = (dwell[i]/max*100).toFixed(1) + '%';
+    });
+    document.getElementById('hudslide').textContent = String(active+1).padStart(2,'0');
+    document.getElementById('hudtime').textContent = fmt(dwell[active]);
+    document.getElementById('prog').style.width = ((active+1)/slides.length*100) + '%';
+
+    var seen = dwell.map(function(v,i){ return {v:v, i:i}; }).filter(function(o){ return o.v > 0; });
+    var maxEl = document.getElementById('sum-max');
+    var minEl = document.getElementById('sum-min');
+    if (seen.length){
+      var hi = seen.reduce(function(a,b){ return b.v > a.v ? b : a; });
+      var lo = seen.reduce(function(a,b){ return b.v < a.v ? b : a; });
+      maxEl.textContent = 'SLIDE ' + String(hi.i+1).padStart(2,'0') + ' · ' + names[hi.i] + ' · ' + fmt(hi.v);
+      minEl.textContent = 'SLIDE ' + String(lo.i+1).padStart(2,'0') + ' · ' + names[lo.i] + ' · ' + fmt(lo.v);
+    }
+    document.getElementById('sum-total').textContent = fmt(total);
+  }
+
+  /* ---- which slide is on screen ---- */
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting && e.intersectionRatio > 0.55){
+          active = slides.indexOf(e.target);
+        }
+      });
+    }, {root: deck, threshold: [0.55, 0.8]});
+    slides.forEach(function(s){ io.observe(s); });
+  } else {
+    deck.addEventListener('scroll', function(){
+      active = Math.round(deck.scrollTop / deck.clientHeight);
+    });
+  }
+
+  /* ---- the clock ---- */
+  function tick(){
+    var now = performance.now();
+    var delta = now - last;
+    last = now;
+    if (document.visibilityState === 'visible' && delta < 2000){
+      dwell[active] += delta;
+    }
+    paint();
+  }
+  setInterval(tick, 250);
+  document.addEventListener('visibilitychange', function(){ last = performance.now(); });
+
+  /* ---- navigation ---- */
+  function go(i){
+    active = Math.max(0, Math.min(slides.length-1, i));
+    slides[active].scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  }
+  document.addEventListener('keydown', function(e){
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
+    if (['ArrowDown','ArrowRight','PageDown',' '].indexOf(e.key) > -1){ e.preventDefault(); go(active+1); }
+    else if (['ArrowUp','ArrowLeft','PageUp'].indexOf(e.key) > -1){ e.preventDefault(); go(active-1); }
+    else if (e.key === 'Home'){ e.preventDefault(); go(0); }
+    else if (e.key === 'End'){ e.preventDefault(); go(slides.length-1); }
+  });
+
+  paint();
+})();
+</script>
+</body>
+</html>
