@@ -64,6 +64,13 @@ h1 + p.sub {
   color: var(--muted);
 }
 
+p.links {
+  margin: 10px 0 0;
+  font-size: 13px;
+}
+
+p.links a { border-bottom-color: var(--muted); }
+
 h2 {
   font-size: 12px;
   font-weight: 400;

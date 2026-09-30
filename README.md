@@ -79,6 +79,5 @@ ausliefert, statt sie durch Jekyll zu schicken.
 Domain-Anbieter einen CNAME auf `alexanderh2seo4.github.io` setzen und
 „Enforce HTTPS" aktivieren.
 
-**Offen:** Die Anschrift in `impressum.html` und `datenschutz.html` ist noch
-ein Platzhalter (`STRASSE_PLATZHALTER`, `PLZ_ORT_PLATZHALTER`). Das Impressum
-braucht eine ladungsfähige Anschrift; ein Postfach genügt nicht.
+**Address:** The legal notice and privacy policy deliberately list only the
+postcode and town (85579 Neubiberg), no street address.
