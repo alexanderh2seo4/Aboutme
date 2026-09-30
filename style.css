@@ -110,6 +110,29 @@ section { margin-top: 56px; }
 
 .dot { color: var(--line); }
 
+.cv {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  column-gap: 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.cv:last-child { border-bottom: 1px solid var(--line); }
+
+.cv .when {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding-top: 3px;
+}
+
+.cv p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
 dl.contact {
   margin: 0;
   display: grid;
@@ -126,6 +149,8 @@ dl.contact dt {
 }
 
 dl.contact dd { margin: 0; }
+
+dl.contact.lang { grid-template-columns: 124px 1fr; }
 
 footer {
   margin-top: 72px;
@@ -153,4 +178,5 @@ footer a { border-bottom: none; }
   .wrap { padding: 56px 20px 48px; }
   dl.contact { grid-template-columns: 1fr; row-gap: 0; }
   dl.contact dd { margin-bottom: 12px; }
+  .cv { grid-template-columns: 1fr; }
 }
