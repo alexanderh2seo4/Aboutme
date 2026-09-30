@@ -1,8 +1,8 @@
 # aboutme
 
 Persönliche Seite von Alexander Kluge. Drei statische HTML-Dateien, ein
-Stylesheet, kein Build, kein JavaScript, keine externen Ressourcen (keine
-Google Fonts, kein CDN, kein Tracking) — das hält die Seite schnell und die
+Stylesheet, ein kleines Skript für den Sternenhimmel, kein Build, keine
+externen Ressourcen (keine Google Fonts, kein CDN, kein Tracking) — das hält die Seite schnell und die
 Datenschutzerklärung kurz.
 
 ```
@@ -10,6 +10,7 @@ index.html        Startseite: Projekte, Auszeichnungen, Kontakt
 impressum.html    Anbieterkennzeichnung nach § 5 DDG
 datenschutz.html  Datenschutzerklärung nach Art. 13 DSGVO
 style.css         das komplette Design
+stars.js          Sternenhimmel und Spiralgalaxie im Hintergrund (Canvas)
 ```
 
 ## Lokal ansehen
@@ -78,7 +79,6 @@ ausliefert, statt sie durch Jekyll zu schicken.
 Domain-Anbieter einen CNAME auf `alexanderh2seo4.github.io` setzen und
 „Enforce HTTPS" aktivieren.
 
-**Vor dem Indexieren:** In `index.html` steht vorerst
-`<meta name="robots" content="noindex, follow">`, damit Suchmaschinen die Seite
-nicht mit den Platzhaltern aufnehmen. Die Zeile löschen, sobald die
-Kontaktdaten drin sind.
+**Offen:** Die Anschrift in `impressum.html` und `datenschutz.html` ist noch
+ein Platzhalter (`STRASSE_PLATZHALTER`, `PLZ_ORT_PLATZHALTER`). Das Impressum
+braucht eine ladungsfähige Anschrift; ein Postfach genügt nicht.
