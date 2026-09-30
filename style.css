@@ -1,4 +1,5 @@
-/* Alexander Kluge — persönliche Seite. Statisch, kein JS, keine externen Ressourcen. */
+/* Alexander Kluge — persönliche Seite. Statisch, keine externen Ressourcen.
+   Einziges Skript: stars.js für den Sternenhimmel im Hintergrund. */
 
 :root {
   --bg: #0b0c0e;
@@ -23,7 +24,18 @@ body {
   font-weight: 400;
 }
 
+#sky {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .wrap {
+  position: relative;
+  z-index: 1;
   max-width: 660px;
   margin: 0 auto;
   padding: 88px 24px 64px;
