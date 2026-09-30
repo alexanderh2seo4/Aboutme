@@ -64,18 +64,18 @@
     }
 
     // Zwei logarithmische Spiralarme plus diffuser Kern.
-    var count = W < 640 ? 520 : 900;
+    var count = W < 640 ? 700 : 1400;
     galaxy = [];
     for (var j = 0; j < count; j++) {
-      var core = j < count * 0.18;
+      var core = j < count * 0.12;
       var arm = j % 2;
       var d = core ? Math.pow(Math.random(), 1.8) * 0.22 : 0.12 + Math.pow(Math.random(), 0.85) * 0.88;
       var ang = core ? Math.random() * 6.283 : arm * Math.PI + Math.log(d * 9 + 1) * 2.35;
-      var spread = core ? 0 : (0.05 + d * 0.16) * (Math.random() - 0.5) * 2;
+      var spread = core ? 0 : (0.02 + d * 0.07) * (Math.random() + Math.random() - 1) * 2;
       galaxy.push({
         d: d + spread * 0.35,
         ang: ang + spread,
-        r: Math.random() < 0.07 ? rand(0.9, 1.6) : rand(0.3, 0.9),
+        r: Math.random() < 0.09 ? rand(1.2, 2) : rand(0.4, 1),
         a: core ? rand(0.35, 0.9) : rand(0.25, 0.95),
         ph: Math.random() * 6.283,
         c: tint()
@@ -115,7 +115,7 @@
     if (!narrow && cx - R * 0.6 > W) return;
     cy -= scroll * 0.35;
     if (cy + R < 0) return;
-    var fade = Math.max(0, 1 - scroll / 520) * (narrow ? 0.4 : 0.75);
+    var fade = Math.max(0, 1 - scroll / 520) * (narrow ? 0.45 : 0.95);
     if (fade <= 0) return;
     cx += px * 6;
     cy += py * 5;
@@ -125,7 +125,7 @@
 
     ctx.globalCompositeOperation = 'lighter';
     var kern = R * 0.55;
-    ctx.globalAlpha = 0.22 * fade;
+    ctx.globalAlpha = 0.3 * fade;
     ctx.drawImage(glow, cx - kern, cy - kern * tilt * 1.4, kern * 2, kern * 2 * tilt * 1.4);
 
     for (var i = 0; i < galaxy.length; i++) {
@@ -137,7 +137,7 @@
       var x = cx + lx * cr - ly * sr;
       var y = cy + lx * sr + ly * cr;
       var tw = still ? 1 : 0.7 + 0.3 * Math.sin(t * 1.3 + p.ph);
-      ctx.globalAlpha = p.a * tw * fade * (1 - p.d * 0.45);
+      ctx.globalAlpha = p.a * tw * fade * (1 - p.d * 0.3);
       ctx.fillStyle = 'rgb(' + p.c + ')';
       if (p.r > 1.1) {
         var g = p.r * 7;
