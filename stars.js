@@ -122,8 +122,8 @@
 
     // Blauer Schleier um die ganze Scheibe und warmer Kern.
     sprite(BLUE, 0, 0, R * 2.3, 0.10);
-    sprite(WARM, 0, 0, R * 0.95, 0.35);
-    sprite(WHITE, 0, 0, R * 0.42, 0.75);
+    sprite(WARM, 0, 0, R * 0.95, 0.22);
+    sprite(WHITE, 0, 0, R * 0.5, 0.8);
     sprite(WHITE, 0, 0, R * 0.14, 1);
 
     var i, p, d;
@@ -144,7 +144,7 @@
         var a = Math.random() * 6.283;
         p = { x: Math.cos(a) * d, y: Math.sin(a) * d };
       }
-      dot(tint(0.3, 0.12), p.x, p.y, 0.5 + Math.random() * 0.8, 0.15 + Math.random() * 0.55 * (1 - d * 0.4));
+      dot(tint(0.3, 0.12), p.x, p.y, 0.5 + Math.random() * 0.8, 0.2 + Math.random() * 0.6 * (1 - d * 0.4));
     }
     // Sternhaufen: die hellen Knoten, die die Arme körnig machen.
     var clusters = [];
@@ -152,7 +152,7 @@
       d = 0.14 + Math.random() * 0.82;
       p = armPoint(i % 2, d, armWidth(d) * 0.6);
       clusters.push(p);
-      sprite(Math.random() < 0.7 ? BLUE : WHITE, p.x, p.y, R * 0.05, 0.22);
+      sprite(Math.random() < 0.7 ? BLUE : WHITE, p.x, p.y, R * 0.06, 0.32);
       var m = 12 + Math.floor(Math.random() * 18);
       for (var k = 0; k < m; k++) {
         dot(tint(0.35, 0.15), p.x + gauss() * 0.012, p.y + gauss() * 0.012, 0.6 + Math.random() * 0.9, 0.35 + Math.random() * 0.6);
@@ -161,7 +161,7 @@
     g.globalAlpha = 1;
 
     // Helle Einzelsterne, zum Teil in den Haufen, zum Teil frei in den Armen.
-    var count = small ? 90 : 170;
+    var count = small ? 130 : 280;
     bright = [];
     for (i = 0; i < count; i++) {
       if (Math.random() < 0.55) {
@@ -174,8 +174,8 @@
       bright.push({
         d: Math.sqrt(p.x * p.x + p.y * p.y),
         ang: Math.atan2(p.y, p.x),
-        s: Math.random() < 0.12 ? rand(10, 16) : rand(4, 9),
-        a: rand(0.5, 1),
+        s: Math.random() < 0.14 ? rand(13, 22) : rand(5, 11),
+        a: rand(0.65, 1),
         tw: rand(0.6, 2),
         ph: Math.random() * 6.283,
         c: tint(0.3, 0.16)
@@ -237,7 +237,7 @@
       var ly = Math.sin(a) * b.d * R * tilt;
       var x = cx + lx * cr - ly * sr;
       var y = cy + lx * sr + ly * cr;
-      var tw = still ? 1 : 0.6 + 0.4 * Math.sin(t * b.tw + b.ph);
+      var tw = still ? 1 : 0.7 + 0.3 * Math.sin(t * b.tw + b.ph);
       ctx.globalAlpha = b.a * tw * fade;
       ctx.drawImage(glows[b.c], x - b.s / 2, y - b.s / 2, b.s, b.s);
     }
