@@ -1,83 +1,87 @@
-# aboutme
+# Alexander Kluge — personal website
 
-Persönliche Seite von Alexander Kluge. Drei statische HTML-Dateien, ein
-Stylesheet, ein kleines Skript für den Sternenhimmel, kein Build, keine
-externen Ressourcen (keine Google Fonts, kein CDN, kein Tracking) — das hält die Seite schnell und die
-Datenschutzerklärung kurz.
+Live: [alexanderh2seo4.github.io/Aboutme](https://alexanderh2seo4.github.io/Aboutme/)
 
-```
-index.html        Startseite: Projekte, Auszeichnungen, Kontakt
-impressum.html    Anbieterkennzeichnung nach § 5 DDG
-datenschutz.html  Datenschutzerklärung nach Art. 13 DSGVO
-style.css         das komplette Design
-stars.js          Sternenhimmel und Spiralgalaxie im Hintergrund (Canvas)
-```
+A static portfolio connecting my software, drone and chemistry projects with
+public demos, source code and press coverage. English content, system fonts,
+no tracking, cookies, external font requests or runtime dependencies. The
+optional canvas starfield respects reduced-motion preferences.
 
-## Lokal ansehen
+- [Project directory](https://alexanderh2seo4.github.io/Aboutme/projects/)
+- [JAR Medical projects and public tools](https://alexanderh2seo4.github.io/Aboutme/projects/jar-medical/)
+- [Press and official references](https://alexanderh2seo4.github.io/Aboutme/press/)
+- [XML sitemap](https://alexanderh2seo4.github.io/Aboutme/sitemap.xml)
 
-```bash
-python3 -m http.server 8000    # → http://localhost:8000
-```
+## Edit and preview
 
-## Vor dem Veröffentlichen ausfüllen
+`index.html` is the hand-maintained profile. Edit project content in
+`content/projects.json` and verified press references in `content/press.json`.
+Keep newspaper coverage distinct from official announcements and project
+references. Add only verified public links; never link private repositories or
+publish personal source datasets. Private implementation details are not part
+of this site. Generated HTML is committed so GitHub Pages needs no build step.
 
-In den Dateien stehen an den noch offenen Stellen Platzhalter in
-GROSSBUCHSTABEN. Alle finden:
-
-```bash
-grep -rn "_PLATZHALTER" .
-```
-
-| Platzhalter | Bedeutung |
-|---|---|
-| `EMAIL_PLATZHALTER` | öffentliche Kontakt-E-Mail |
-| `TELEFON_PLATZHALTER` | Telefonnummer in lesbarer Schreibweise, z. B. `+49 89 123456` |
-| `TELEFON_E164_PLATZHALTER` | dieselbe Nummer für `tel:`-Links, ohne Leerzeichen, z. B. `+4989123456` |
-| `STRASSE_PLATZHALTER` | Straße und Hausnummer (Impressumspflicht, Postfach genügt nicht) |
-| `PLZ_ORT_PLATZHALTER` | Postleitzahl und Ort |
-| `HOSTER_PLATZHALTER` | Name und Anschrift des Hosters, z. B. `GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA` bei GitHub Pages |
-
-Beispiel:
-
-```bash
-sed -i '' 's/EMAIL_PLATZHALTER/mail@example.de/g' *.html
+```sh
+python3 scripts/build_projects.py
+python3 scripts/check_site.py
+python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-Die Projektseite der Medizintechnik-Projekte ist `jar-medical.tech` und bei
-`TriARge` und `ems-voice` sowie im Kontaktblock verlinkt.
+Open `http://127.0.0.1:8000/`. Project content, navigation and metadata work
+without JavaScript. Shared styles live in `style.css`; bump its `?v=` parameter
+in the homepage, legal pages and generator after changing it. `stars.js` is the
+only runtime script. Keep its version parameter aligned if it changes.
 
-## Veröffentlichen
+The checker validates titles, descriptions, canonical URLs, social metadata,
+structured JSON, sitemap membership, local assets, internal links and anchors,
+and that every page is reachable from the homepage. CI also rebuilds the
+project/press pages and rejects stale generated output.
 
-Die Seite läuft auf jedem Webspace, der statische Dateien ausliefert. Für
-GitHub Pages: Repository-Einstellungen → Pages → Branch auswählen; die
-`index.html` liegt bereits im Wurzelverzeichnis. Für eine eigene Domain eine
-Datei `CNAME` mit der Domain anlegen.
+## Search and sharing
 
-## Mit GitHub Pages veröffentlichen
+The site includes unique page titles and descriptions, self-referencing
+canonical URLs, ProfilePage/Person/WebSite structured data, project references,
+breadcrumbs and a 1200 × 630 social preview image. The XML sitemap contains
+only the ten canonical indexable pages. Legal and privacy pages retain
+`noindex, follow` and are excluded from the sitemap.
 
-Kostenlos ist GitHub Pages nur für **öffentliche** Repositories — für private
-Repos braucht es GitHub Pro. Zwei Einstellungen im Browser, beides einmalig:
+For a substantive content update, update `UPDATED` in the generator before
+rebuilding; do not refresh sitemap dates for cosmetic edits. Update the
+homepage ProfilePage date when its content changes. Google documents these
+practices in its [SEO starter guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)
+and [sitemap guide](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap).
 
-1. **Repository öffentlich schalten**
-   Settings → General → ganz unten „Danger Zone" → *Change repository
-   visibility* → **Public**.
+To monitor actual search performance, use the Search Console URL-prefix
+property `https://alexanderh2seo4.github.io/Aboutme/` and submit
+`https://alexanderh2seo4.github.io/Aboutme/sitemap.xml`. Submission and indexing
+are not performed by the build. Use URL Inspection to check the homepage,
+project directory and JAR Medical page after deployment. Google decides when
+to crawl/index pages; metadata and structured data do not guarantee rankings
+or a rich result.
 
-2. **Pages einschalten**
-   Settings → Pages → *Source*: **Deploy from a branch** →
-   Branch `claude/personal-portfolio-site-ga5lsq`, Ordner `/ (root)` → Save.
+This is a GitHub Pages *project* site. A file at `/Aboutme/robots.txt` would not
+control crawlers for this host; the applicable robots file is at
+`https://alexanderh2seo4.github.io/robots.txt`. Do not add a misleading project-
+level robots file or include other domains' URLs in this sitemap. JAR Medical
+maintains its own sitemap.
 
-Nach ein bis zwei Minuten liegt die Seite unter
+## Public link audit — 5 November 2026
 
-```
-https://alexanderh2seo4.github.io/Aboutme/
-```
+Project websites, public repositories, JAR Medical tools, the transcription
+service's `/health` endpoint, Merkur and official award pages returned HTTP
+200. LinkedIn blocks automated requests (999), and the two Süddeutsche
+Zeitung articles return bot-access restrictions (403). Those newspaper links
+were independently verified through indexed publisher results. AFS's working
+public map is at `https://alexanderh2seo4.github.io/AFS/`. Super Slides links to
+its repository because its guessed Pages address returned 404.
 
-Die Datei `.nojekyll` sorgt dafür, dass GitHub die Dateien unverändert
-ausliefert, statt sie durch Jekyll zu schicken.
+## Publish
 
-**Eigene Domain:** Settings → Pages → *Custom domain* eintragen, beim
-Domain-Anbieter einen CNAME auf `alexanderh2seo4.github.io` setzen und
-„Enforce HTTPS" aktivieren.
+GitHub Pages serves branch `claude/personal-portfolio-site-ga5lsq`, directory
+`/`, of `alexanderh2seo4/Aboutme`. A normal push to that branch deploys the site;
+check the Pages build and the live files afterward. `.nojekyll` preserves the
+static files. Do not change repository visibility or hosting settings as part
+of routine content work.
 
-**Address:** The legal notice and privacy policy deliberately list only the
-postcode and town (85579 Neubiberg), no street address.
+The legal notice and privacy policy deliberately list only town/postcode
+(85579 Neubiberg), with no street address. Keep that existing choice intact.

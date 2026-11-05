@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Storm Patrol Drone Simulation — Alexander Kluge</title>
+<meta name="description" content="Storm Patrol, a WATT THE HACK prototype for planning drone inspections of power lines after storms. Explore the simulation, risk mapping and public source code.">
+<meta name="author" content="Alexander Kluge">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0b0c0e">
+<link rel="canonical" href="https://alexanderh2seo4.github.io/Aboutme/projects/storm-patrol/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alexander Kluge">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Storm Patrol Drone Simulation — Alexander Kluge">
+<meta property="og:description" content="Storm Patrol, a WATT THE HACK prototype for planning drone inspections of power lines after storms. Explore the simulation, risk mapping and public source code.">
+<meta property="og:url" content="https://alexanderh2seo4.github.io/Aboutme/projects/storm-patrol/">
+<meta property="og:image" content="https://alexanderh2seo4.github.io/Aboutme/assets/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Alexander Kluge — software, drones and chemistry projects">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Storm Patrol Drone Simulation — Alexander Kluge">
+<meta name="twitter:description" content="Storm Patrol, a WATT THE HACK prototype for planning drone inspections of power lines after storms. Explore the simulation, risk mapping and public source code.">
+<meta name="twitter:image" content="https://alexanderh2seo4.github.io/Aboutme/assets/social-preview.png">
+<meta name="twitter:image:alt" content="Alexander Kluge — software, drones and chemistry projects">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=4">
+<link rel="sitemap" type="application/xml" href="https://alexanderh2seo4.github.io/Aboutme/sitemap.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://alexanderh2seo4.github.io/Aboutme/projects/storm-patrol/#page", "url": "https://alexanderh2seo4.github.io/Aboutme/projects/storm-patrol/", "name": "Storm Patrol Drone Simulation — Alexander Kluge", "description": "Storm Patrol, a WATT THE HACK prototype for planning drone inspections of power lines after storms. Explore the simulation, risk mapping and public source code.", "inLanguage": "en", "isPartOf": {"@id": "https://alexanderh2seo4.github.io/Aboutme/#website"}, "author": {"@id": "https://alexanderh2seo4.github.io/Aboutme/#alexander-kluge"}, "mainEntity": {"@id": "https://alexanderh2seo4.github.io/Aboutme/projects/storm-patrol/#project"}}, {"@type": "CreativeWork", "@id": "https://alexanderh2seo4.github.io/Aboutme/projects/storm-patrol/#project", "url": "https://alexanderh2seo4.github.io/Aboutme/projects/storm-patrol/", "name": "Storm Patrol — WATT THE HACK", "description": "Storm Patrol turns storm reports and uncertain grid information into a risk map, then plans how a small fleet of drones could inspect power-line sections.", "contributor": {"@id": "https://alexanderh2seo4.github.io/Aboutme/#alexander-kluge"}, "subjectOf": [{"@type": "WebPage", "url": "https://alexanderh2seo4.github.io/WATT-THE-HACK/", "name": "Open the Storm Patrol simulation"}, {"@type": "WebPage", "url": "https://github.com/alexanderh2seo4/WATT-THE-HACK", "name": "Storm Patrol source and README"}, {"@type": "WebPage", "url": "https://github.com/alexanderh2seo4/WATT-THE-HACK/blob/main/ASSUMPTIONS.md", "name": "Simulation assumptions"}]}, {"@type": "Person", "@id": "https://alexanderh2seo4.github.io/Aboutme/#alexander-kluge", "name": "Alexander Kluge", "url": "https://alexanderh2seo4.github.io/Aboutme/"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Alexander Kluge", "item": "https://alexanderh2seo4.github.io/Aboutme/"}, {"@type": "ListItem", "position": 2, "name": "Projects", "item": "https://alexanderh2seo4.github.io/Aboutme/projects/"}, {"@type": "ListItem", "position": 3, "name": "Storm Patrol — WATT THE HACK", "item": "https://alexanderh2seo4.github.io/Aboutme/projects/storm-patrol/"}]}]}</script>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<a class="skip-link" href="#main">Skip to content</a>
+<main class="wrap project-page" id="main">
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="../../">Alexander Kluge</a> / <a href="../">Projects</a> / <span aria-current="page">Storm Patrol — WATT THE HACK</span>
+  </nav>
+  <header>
+    <p class="eyebrow">Hackathon · Drones · Grid inspection</p>
+    <h1>Storm Patrol — WATT THE HACK</h1>
+    <p class="project-lead">Storm Patrol turns storm reports and uncertain grid information into a risk map, then plans how a small fleet of drones could inspect power-line sections.</p>
+  </header>
+  <section>
+    <h2>From a storm report to an inspection plan</h2>
+    <p>The WATT THE HACK project starts with storm reports, known dead lines and a vegetation layer. It ranks areas for inspection, selects starting locations for five simulated mobile sensor packages, and plans flights around battery and charging constraints.</p>
+    <p>Each simulated observation updates the risk estimate. The operator view shows drone activity and recommendations such as sending a repair crew, seeking confirmation or inspecting a section from the ground.</p>
+<ul class="project-links">
+  <li><a href="https://alexanderh2seo4.github.io/WATT-THE-HACK/">Open the Storm Patrol simulation</a></li>
+</ul>
+  </section>
+  <section>
+    <h2>A simulation with visible assumptions</h2>
+    <p>The frontend uses React, TypeScript and MapLibre, with a Python FastAPI backend. An operator view follows the inspection plan; a separate setup view controls the synthetic scenario used to evaluate it.</p>
+    <p>This is a hackathon prototype. The network and faults are fictional, and the planner does not model airspace, terrain, collisions or wind. Its recommendations demonstrate the planning approach rather than a deployment-ready inspection service.</p>
+<ul class="project-links">
+  <li><a href="https://github.com/alexanderh2seo4/WATT-THE-HACK">Storm Patrol source and README</a></li>
+  <li><a href="https://github.com/alexanderh2seo4/WATT-THE-HACK/blob/main/ASSUMPTIONS.md">Simulation assumptions</a></li>
+</ul>
+  </section>
+  <section>
+    <h2>Related projects</h2>
+<ul class="project-links">
+  <li><a href="../jar-medical/">JAR Medical — TriARge, ems-voice &amp; MEDICRAFT</a></li>
+  <li><a href="../fpv-power/">FPV-Power.de — drones &amp; components</a></li>
+</ul>
+    <p><a href="../../#contact">Contact Alexander Kluge</a> about this work.</p>
+  </section>
+  <footer>
+    <a href="../../">About Alexander</a> <span class="dot">·</span>
+    <a href="../../projects/">All projects</a> <span class="dot">·</span>
+    <a href="../../press/">Press</a> <span class="dot">·</span>
+    <a href="../../sitemap.xml">Sitemap</a><br>
+    <a href="../../impressum.html">Legal notice</a> <span class="dot">·</span>
+    <a href="../../datenschutz.html">Privacy</a>
+  </footer>
+</main>
+<script src="../../stars.js?v=3" defer></script>
+</body>
+</html>

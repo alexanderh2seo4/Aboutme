@@ -1,0 +1,375 @@
+[
+  {
+    "slug": "jar-medical",
+    "name": "JAR Medical — TriARge, ems-voice & MEDICRAFT",
+    "title": "JAR Medical Projects — Alexander Kluge",
+    "description": "Alexander Kluge's JAR Medical projects: offline triage with TriARge, EMS speech documentation, MEDICRAFT and links to public demos and healthcare tools.",
+    "category": "Emergency software · AR · Speech AI",
+    "summary": "I co-founded JAR Medical to build tools for emergency responders. The work connects offline incident coordination, augmented reality and German medical speech recognition.",
+    "sections": [
+      {
+        "heading": "TriARge: offline incident coordination",
+        "paragraphs": [
+          "TriARge is an offline-first mass-casualty incident triage prototype. Marker-based patient identification connects an AR responder view to a local incident-command hub. The hub brings patient information, voice documentation, radio logs and a shared incident view together on the local network.",
+          "The system uses Python, FastAPI, OpenCV and SQLite, with optional cloud replication. It is a prototype for training and simulation, not a certified medical device or a system ready for real emergency operations."
+        ],
+        "links": [
+          [
+            "JAR Medical project introduction",
+            "https://jar-medical.tech/info/"
+          ],
+          [
+            "Incident-command demo",
+            "https://jar-medical.tech/demo/neubiberg/"
+          ],
+          [
+            "Paramedic demo",
+            "https://jar-medical.tech/demo/paramedic/"
+          ]
+        ],
+        "id": "triarge"
+      },
+      {
+        "heading": "ems-voice: from speech to structured documentation",
+        "paragraphs": [
+          "ems-voice explores how spoken German emergency-care notes can become structured documentation. The pipeline combines transcription, correction of medical terminology, normalization of numbers and units, and extraction into a defined schema.",
+          "The research focuses on preserving medically relevant terms within the memory constraints of a headset. Training data and evaluation matter alongside the model itself: a transcript can look readable while still getting a drug name or a number wrong."
+        ],
+        "links": [
+          [
+            "Speech recognition demo",
+            "https://jar-medical.tech/demo/asr/"
+          ],
+          [
+            "Transcription service status (stt subdomain)",
+            "https://stt.jar-medical.tech/health"
+          ]
+        ],
+        "id": "ems-voice"
+      },
+      {
+        "heading": "MEDICRAFT: speech-data collection through a game",
+        "paragraphs": [
+          "MEDICRAFT is a browser game built around recording German emergency-domain speech. It provides a way to contribute spoken examples to the project's speech-data work.",
+          "The public contribution pages offer a game and a direct recording flow. Their own notices explain participation and recording before a visitor contributes."
+        ],
+        "links": [
+          [
+            "Play MEDICRAFT",
+            "https://jar-medical.tech/demo/DataSet/"
+          ],
+          [
+            "Speech-data contribution options",
+            "https://jar-medical.tech/mitmachen.html"
+          ],
+          [
+            "Direct voice recording",
+            "https://jar-medical.tech/mitmachen-aufnahme.html"
+          ]
+        ],
+        "id": "medicraft"
+      },
+      {
+        "heading": "Drone imagery and the incident map",
+        "paragraphs": [
+          "Another part of the work connects drone imagery with incident maps. The aim is to place observations in a shared geographic view so that an operator can review the image evidence and its location together.",
+          "This is part of the broader incident-coordination prototype. The public demos introduce the interface; they do not establish operational readiness."
+        ],
+        "links": [
+          [
+            "JAR Medical technology overview",
+            "https://jar-medical.tech/#technologie"
+          ],
+          [
+            "Disaster-response project page",
+            "https://jar-medical.tech/katastrophenschutz.html"
+          ]
+        ],
+        "id": "drone-imagery"
+      },
+      {
+        "heading": "JAR Medical website, tools and sector pages",
+        "paragraphs": [
+          "These links lead to the public JAR Medical site and its product areas. The corporate portal includes sign-in features. The stt.jar-medical.tech subdomain is a transcription service endpoint; the speech-recognition demo above is the visitor-facing place to try the workflow."
+        ],
+        "links": [
+          [
+            "JAR Medical homepage",
+            "https://jar-medical.tech/"
+          ],
+          [
+            "Emergency medical services",
+            "https://jar-medical.tech/rettungsdienst.html"
+          ],
+          [
+            "Hospital documentation",
+            "https://jar-medical.tech/krankenhaus.html"
+          ],
+          [
+            "Care-service documentation",
+            "https://jar-medical.tech/pflegedienst.html"
+          ],
+          [
+            "Care documentation tool",
+            "https://jar-medical.tech/pflege/"
+          ],
+          [
+            "Corporate portal",
+            "https://jar-medical.tech/corporate/"
+          ]
+        ],
+        "id": "websites"
+      }
+    ],
+    "related": [
+      "storm-patrol",
+      "reqflow"
+    ]
+  },
+  {
+    "slug": "storm-patrol",
+    "name": "Storm Patrol — WATT THE HACK",
+    "title": "Storm Patrol Drone Simulation — Alexander Kluge",
+    "description": "Storm Patrol, a WATT THE HACK prototype for planning drone inspections of power lines after storms. Explore the simulation, risk mapping and public source code.",
+    "category": "Hackathon · Drones · Grid inspection",
+    "summary": "Storm Patrol turns storm reports and uncertain grid information into a risk map, then plans how a small fleet of drones could inspect power-line sections.",
+    "sections": [
+      {
+        "heading": "From a storm report to an inspection plan",
+        "paragraphs": [
+          "The WATT THE HACK project starts with storm reports, known dead lines and a vegetation layer. It ranks areas for inspection, selects starting locations for five simulated mobile sensor packages, and plans flights around battery and charging constraints.",
+          "Each simulated observation updates the risk estimate. The operator view shows drone activity and recommendations such as sending a repair crew, seeking confirmation or inspecting a section from the ground."
+        ],
+        "links": [
+          [
+            "Open the Storm Patrol simulation",
+            "https://alexanderh2seo4.github.io/WATT-THE-HACK/"
+          ]
+        ]
+      },
+      {
+        "heading": "A simulation with visible assumptions",
+        "paragraphs": [
+          "The frontend uses React, TypeScript and MapLibre, with a Python FastAPI backend. An operator view follows the inspection plan; a separate setup view controls the synthetic scenario used to evaluate it.",
+          "This is a hackathon prototype. The network and faults are fictional, and the planner does not model airspace, terrain, collisions or wind. Its recommendations demonstrate the planning approach rather than a deployment-ready inspection service."
+        ],
+        "links": [
+          [
+            "Storm Patrol source and README",
+            "https://github.com/alexanderh2seo4/WATT-THE-HACK"
+          ],
+          [
+            "Simulation assumptions",
+            "https://github.com/alexanderh2seo4/WATT-THE-HACK/blob/main/ASSUMPTIONS.md"
+          ]
+        ]
+      }
+    ],
+    "related": [
+      "jar-medical",
+      "fpv-power"
+    ]
+  },
+  {
+    "slug": "reqflow",
+    "name": "ReqFlow — BMW product requirements",
+    "title": "ReqFlow BMW Hackathon Project — Alexander Kluge",
+    "description": "ReqFlow is an EHL hackathon prototype for the BMW AI for Product Decision Making challenge, connecting customer evidence to reviewed vehicle requirements.",
+    "category": "Hackathon · AI · Product decisions",
+    "summary": "Our EHL hackathon team built ReqFlow for the BMW challenge AI for Product Decision Making: a workbench connecting customer evidence with prioritized vehicle requirements.",
+    "sections": [
+      {
+        "heading": "Keeping the evidence next to the decision",
+        "paragraphs": [
+          "ReqFlow follows the path from customer evidence to requirements that a product manager can review and approve. The prototype brings research and requirement work into one desktop application, making the relationship between a proposed requirement and its supporting material easier to inspect.",
+          "It was built by the EHL Team Eichel hackathon team for the BMW challenge. It is a team prototype, not an official BMW product."
+        ],
+        "links": [
+          [
+            "ReqFlow source and project overview",
+            "https://github.com/EHL-Team-Eichel/reqflow"
+          ]
+        ]
+      },
+      {
+        "heading": "Desktop prototype and implementation",
+        "paragraphs": [
+          "The application uses Electron and TypeScript and targets Windows, macOS and Linux. Its public repository documents the product, architecture, research implementation and review workflow.",
+          "The judging guide gives a concrete route through the prototype and its requirement coverage. The product document explains what the team set out to build, which is useful context before exploring the implementation."
+        ],
+        "links": [
+          [
+            "ReqFlow product definition",
+            "https://github.com/EHL-Team-Eichel/reqflow/blob/main/PRODUCT.md"
+          ],
+          [
+            "Prototype judging guide",
+            "https://github.com/EHL-Team-Eichel/reqflow/blob/main/JUDGING.md"
+          ]
+        ]
+      }
+    ],
+    "related": [
+      "storm-patrol",
+      "super-slides"
+    ]
+  },
+  {
+    "slug": "afs-tools",
+    "name": "AFS volunteer maps & AFSER MCP",
+    "title": "AFS Volunteer Maps & MCP — Alexander Kluge",
+    "description": "Alexander Kluge's AFS volunteer tools: anonymous maps for exchange-program coordination and an AFSER MCP service that keeps personal source data private.",
+    "category": "Volunteering · Maps · MCP",
+    "summary": "Alongside volunteering as an AFS sending coordinator, I build tools that help volunteers find relevant exchange-program tasks and understand their geographic context.",
+    "sections": [
+      {
+        "heading": "Maps for volunteer coordination",
+        "paragraphs": [
+          "The AFS map brings together anonymous views of sending interviews, outgoing exchange students, hosted students, host families and returnees. Chapter selection and location-based filtering help volunteers focus on relevant work.",
+          "The public view uses approximate locations and anonymous records. Detailed source records remain behind AFSER's own login. The map does not publish names, contact details or household addresses."
+        ],
+        "links": [
+          [
+            "Open the AFS volunteer map",
+            "https://alexanderh2seo4.github.io/AFS/"
+          ],
+          [
+            "AFS map source and documentation",
+            "https://github.com/alexanderh2seo4/AFS"
+          ]
+        ]
+      },
+      {
+        "heading": "A separate local data service",
+        "paragraphs": [
+          "The companion AFSER service separates private source acquisition from the public map. It stores source data locally and exposes bounded anonymous results through an API and the Model Context Protocol (MCP).",
+          "This separation lets an assistant work with relevant anonymous records while the full source remains on the owner's computer. The public code repository contains the implementation and setup documentation, rather than a personal dataset."
+        ],
+        "links": [
+          [
+            "AFSER MCP source and documentation",
+            "https://github.com/alexanderh2seo4/afser-mcp"
+          ]
+        ]
+      }
+    ],
+    "related": [
+      "reqflow",
+      "super-slides"
+    ]
+  },
+  {
+    "slug": "super-slides",
+    "name": "Super Slides — HTML presentations",
+    "title": "Super Slides HTML Presentation Library — Alexander Kluge",
+    "description": "Super Slides is a dependency-free HTML presentation library with slide navigation and browser-local reading statistics. Explore Alexander Kluge's public project.",
+    "category": "Open source · Presentations · JavaScript",
+    "summary": "Super Slides turns plain HTML sections into a web presentation and shows how the deck was read, with no runtime dependencies or hosted service required.",
+    "sections": [
+      {
+        "heading": "A presentation made from HTML",
+        "paragraphs": [
+          "A stylesheet and a script add slide navigation, a progress display and a reading report to ordinary HTML sections. The same library can also measure sections of a scrolling page.",
+          "The report tracks reading time per slide, revisits, the furthest slide reached and where a reading session ended. Time in a background tab is excluded so that leaving a deck open does not count as reading it."
+        ],
+        "links": [
+          [
+            "Super Slides source and examples",
+            "https://github.com/alexanderh2seo4/SuperSlides-"
+          ]
+        ]
+      },
+      {
+        "heading": "Local by default",
+        "paragraphs": [
+          "The default report stays in browser memory. There are no default cookies, persistent storage or network reporting. A developer can explicitly configure a collector if a project needs one.",
+          "The project is MIT licensed and includes keyboard navigation, print styles and examples. The repository explains integration, styling, reporting and the distinction between local statistics and an explicitly enabled collection endpoint."
+        ],
+        "links": [
+          [
+            "Super Slides integration guide",
+            "https://github.com/alexanderh2seo4/SuperSlides-#quick-start"
+          ]
+        ]
+      }
+    ],
+    "related": [
+      "reqflow",
+      "afs-tools"
+    ]
+  },
+  {
+    "slug": "innovalloy-deepdive",
+    "name": "InnovAlloy DeepDive — Jugend forscht",
+    "title": "InnovAlloy DeepDive: Jugend forscht — Alexander Kluge",
+    "description": "InnovAlloy DeepDive by Levi Jekic, Lennart Antritter and Alexander Kluge: Bi-Sn-Zn-Al alloy research and the 2026 Jugend forscht national Chemistry award.",
+    "category": "Chemistry · Materials research · Jugend forscht 2026",
+    "summary": "With Levi Jekic and Lennart Antritter at Gymnasium Neubiberg, I investigated phase-associated brittle fracture in Bi-Sn-Zn-Al alloy systems. Our project won the 2026 Jugend forscht national Chemistry competition.",
+    "sections": [
+      {
+        "heading": "Why a protective alloy becomes brittle",
+        "paragraphs": [
+          "The research asks why an alloy used in the context of protecting steel from corrosion during galvanising can become brittle at elevated temperatures. It connects alloy composition and phase behaviour with the way a material fractures.",
+          "The full project title is InnovAlloy DeepDive: Analyse phasenassoziierter Sprödbrüche in Bi-Sn-Zn-Al-Systemen. The work sits at the intersection of chemistry and materials research."
+        ],
+        "links": []
+      },
+      {
+        "heading": "National Chemistry award in 2026",
+        "paragraphs": [
+          "Levi Jekic, Lennart Antritter and Alexander Kluge received first prize in Chemistry at the 61st Jugend forscht national competition, held from 28 to 31 May 2026 in Herzogenaurach.",
+          "The Bavarian education ministry's public announcement names the three researchers, Gymnasium Neubiberg and the project. It provides an independent reference for the award and the research title."
+        ],
+        "links": [
+          [
+            "Bavarian education ministry: national Chemistry winners",
+            "https://www.km.bayern.de/meldung/sensationeller-erfolg-bayerischer-schuelerinnen-und-schueler-beim-bundesfinale-von-jugend-forscht"
+          ],
+          [
+            "Süddeutsche Zeitung: Jugend forscht coverage",
+            "https://www.sueddeutsche.de/muenchen/landkreismuenchen/neubiberg-hoehenkirchen-siegertsbrunn-jugend-forscht-bundessieger-li.3492189"
+          ]
+        ]
+      }
+    ],
+    "related": [
+      "jar-medical",
+      "fpv-power"
+    ]
+  },
+  {
+    "slug": "fpv-power",
+    "name": "FPV-Power.de — drones & components",
+    "title": "FPV-Power Drone Project — Alexander Kluge",
+    "description": "FPV-Power.de, co-founded by Alexander Kluge and Fabian in 2022: FPV drone components, spare parts, e-commerce and hands-on hardware experience in Germany.",
+    "category": "Co-founder since 2022 · FPV · E-commerce",
+    "summary": "Fabian and I founded FPV-Power.de in 2022, bringing our own experience building and repairing FPV drones into a shop for components and spare parts.",
+    "sections": [
+      {
+        "heading": "From flying to supplying parts",
+        "paragraphs": [
+          "The project grew from a familiar problem in our own hobby: a missing or broken component could mean waiting weeks before flying again. We built the shop around availability and shipping from Germany.",
+          "Running it brought hardware knowledge together with e-commerce and logistics. Choosing components and understanding repair needs mattered alongside making the ordering and fulfilment process work."
+        ],
+        "links": [
+          [
+            "Visit FPV-Power.de",
+            "https://fpv-power.de"
+          ]
+        ]
+      },
+      {
+        "heading": "Hands-on work with drones",
+        "paragraphs": [
+          "My broader FPV work includes repairing and custom-building drones, club activities with FPV-München, and aerial imaging. These projects connect electronics, mechanical decisions and the practical constraints of flying.",
+          "That background also connects to my software projects: Storm Patrol explores drone inspection planning, while the JAR Medical prototype explores how aerial observations can contribute to an incident map."
+        ],
+        "links": []
+      }
+    ],
+    "related": [
+      "storm-patrol",
+      "jar-medical"
+    ]
+  }
+]

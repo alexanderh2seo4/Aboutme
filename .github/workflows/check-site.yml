@@ -1,0 +1,15 @@
+name: Check static site
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check links, metadata, sitemap and structured JSON
+        run: python3 scripts/check_site.py
+      - name: Verify generated pages are current
+        run: |
+          python3 scripts/build_projects.py
+          git diff --exit-code -- projects press sitemap.xml

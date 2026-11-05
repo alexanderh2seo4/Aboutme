@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AFS Volunteer Maps &amp; MCP — Alexander Kluge</title>
+<meta name="description" content="Alexander Kluge&#x27;s AFS volunteer tools: anonymous maps for exchange-program coordination and an AFSER MCP service that keeps personal source data private.">
+<meta name="author" content="Alexander Kluge">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0b0c0e">
+<link rel="canonical" href="https://alexanderh2seo4.github.io/Aboutme/projects/afs-tools/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alexander Kluge">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="AFS Volunteer Maps &amp; MCP — Alexander Kluge">
+<meta property="og:description" content="Alexander Kluge&#x27;s AFS volunteer tools: anonymous maps for exchange-program coordination and an AFSER MCP service that keeps personal source data private.">
+<meta property="og:url" content="https://alexanderh2seo4.github.io/Aboutme/projects/afs-tools/">
+<meta property="og:image" content="https://alexanderh2seo4.github.io/Aboutme/assets/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Alexander Kluge — software, drones and chemistry projects">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AFS Volunteer Maps &amp; MCP — Alexander Kluge">
+<meta name="twitter:description" content="Alexander Kluge&#x27;s AFS volunteer tools: anonymous maps for exchange-program coordination and an AFSER MCP service that keeps personal source data private.">
+<meta name="twitter:image" content="https://alexanderh2seo4.github.io/Aboutme/assets/social-preview.png">
+<meta name="twitter:image:alt" content="Alexander Kluge — software, drones and chemistry projects">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../style.css?v=4">
+<link rel="sitemap" type="application/xml" href="https://alexanderh2seo4.github.io/Aboutme/sitemap.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://alexanderh2seo4.github.io/Aboutme/projects/afs-tools/#page", "url": "https://alexanderh2seo4.github.io/Aboutme/projects/afs-tools/", "name": "AFS Volunteer Maps & MCP — Alexander Kluge", "description": "Alexander Kluge's AFS volunteer tools: anonymous maps for exchange-program coordination and an AFSER MCP service that keeps personal source data private.", "inLanguage": "en", "isPartOf": {"@id": "https://alexanderh2seo4.github.io/Aboutme/#website"}, "author": {"@id": "https://alexanderh2seo4.github.io/Aboutme/#alexander-kluge"}, "mainEntity": {"@id": "https://alexanderh2seo4.github.io/Aboutme/projects/afs-tools/#project"}}, {"@type": "CreativeWork", "@id": "https://alexanderh2seo4.github.io/Aboutme/projects/afs-tools/#project", "url": "https://alexanderh2seo4.github.io/Aboutme/projects/afs-tools/", "name": "AFS volunteer maps & AFSER MCP", "description": "Alongside volunteering as an AFS sending coordinator, I build tools that help volunteers find relevant exchange-program tasks and understand their geographic context.", "contributor": {"@id": "https://alexanderh2seo4.github.io/Aboutme/#alexander-kluge"}, "subjectOf": [{"@type": "WebPage", "url": "https://alexanderh2seo4.github.io/AFS/", "name": "Open the AFS volunteer map"}, {"@type": "WebPage", "url": "https://github.com/alexanderh2seo4/AFS", "name": "AFS map source and documentation"}, {"@type": "WebPage", "url": "https://github.com/alexanderh2seo4/afser-mcp", "name": "AFSER MCP source and documentation"}]}, {"@type": "Person", "@id": "https://alexanderh2seo4.github.io/Aboutme/#alexander-kluge", "name": "Alexander Kluge", "url": "https://alexanderh2seo4.github.io/Aboutme/"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Alexander Kluge", "item": "https://alexanderh2seo4.github.io/Aboutme/"}, {"@type": "ListItem", "position": 2, "name": "Projects", "item": "https://alexanderh2seo4.github.io/Aboutme/projects/"}, {"@type": "ListItem", "position": 3, "name": "AFS volunteer maps & AFSER MCP", "item": "https://alexanderh2seo4.github.io/Aboutme/projects/afs-tools/"}]}]}</script>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<a class="skip-link" href="#main">Skip to content</a>
+<main class="wrap project-page" id="main">
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="../../">Alexander Kluge</a> / <a href="../">Projects</a> / <span aria-current="page">AFS volunteer maps &amp; AFSER MCP</span>
+  </nav>
+  <header>
+    <p class="eyebrow">Volunteering · Maps · MCP</p>
+    <h1>AFS volunteer maps &amp; AFSER MCP</h1>
+    <p class="project-lead">Alongside volunteering as an AFS sending coordinator, I build tools that help volunteers find relevant exchange-program tasks and understand their geographic context.</p>
+  </header>
+  <section>
+    <h2>Maps for volunteer coordination</h2>
+    <p>The AFS map brings together anonymous views of sending interviews, outgoing exchange students, hosted students, host families and returnees. Chapter selection and location-based filtering help volunteers focus on relevant work.</p>
+    <p>The public view uses approximate locations and anonymous records. Detailed source records remain behind AFSER&#x27;s own login. The map does not publish names, contact details or household addresses.</p>
+<ul class="project-links">
+  <li><a href="https://alexanderh2seo4.github.io/AFS/">Open the AFS volunteer map</a></li>
+  <li><a href="https://github.com/alexanderh2seo4/AFS">AFS map source and documentation</a></li>
+</ul>
+  </section>
+  <section>
+    <h2>A separate local data service</h2>
+    <p>The companion AFSER service separates private source acquisition from the public map. It stores source data locally and exposes bounded anonymous results through an API and the Model Context Protocol (MCP).</p>
+    <p>This separation lets an assistant work with relevant anonymous records while the full source remains on the owner&#x27;s computer. The public code repository contains the implementation and setup documentation, rather than a personal dataset.</p>
+<ul class="project-links">
+  <li><a href="https://github.com/alexanderh2seo4/afser-mcp">AFSER MCP source and documentation</a></li>
+</ul>
+  </section>
+  <section>
+    <h2>Related projects</h2>
+<ul class="project-links">
+  <li><a href="../reqflow/">ReqFlow — BMW product requirements</a></li>
+  <li><a href="../super-slides/">Super Slides — HTML presentations</a></li>
+</ul>
+    <p><a href="../../#contact">Contact Alexander Kluge</a> about this work.</p>
+  </section>
+  <footer>
+    <a href="../../">About Alexander</a> <span class="dot">·</span>
+    <a href="../../projects/">All projects</a> <span class="dot">·</span>
+    <a href="../../press/">Press</a> <span class="dot">·</span>
+    <a href="../../sitemap.xml">Sitemap</a><br>
+    <a href="../../impressum.html">Legal notice</a> <span class="dot">·</span>
+    <a href="../../datenschutz.html">Privacy</a>
+  </footer>
+</main>
+<script src="../../stars.js?v=3" defer></script>
+</body>
+</html>

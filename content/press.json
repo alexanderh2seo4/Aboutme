@@ -1,0 +1,58 @@
+[
+  {
+    "publisher": "Süddeutsche Zeitung",
+    "label": "JAR Medical: BWKI finals",
+    "kind": "Newspaper coverage",
+    "date": "3 November 2026",
+    "project": "jar-medical",
+    "url": "https://www.sueddeutsche.de/muenchen/landkreismuenchen/neubiberg-putzbrunn-kuenstliche-intelligenz-katastrophenschutz-bundeswettbewerb-li.3570070"
+  },
+  {
+    "publisher": "Münchner Merkur",
+    "label": "Neubiberger Gymnasiasten holen Bundessieg bei Jugend forscht",
+    "kind": "Newspaper coverage",
+    "date": "11 June 2026",
+    "project": "innovalloy-deepdive",
+    "url": "https://www.merkur.de/lokales/muenchen-lk/neubiberg-ort29121/neubiberger-gymnasiasten-holen-bundessieg-bei-jugend-forscht-94345123.html"
+  },
+  {
+    "publisher": "Süddeutsche Zeitung",
+    "label": "InnovAlloy and the Jugend forscht national winners",
+    "kind": "Newspaper coverage",
+    "date": "2026",
+    "project": "innovalloy-deepdive",
+    "url": "https://www.sueddeutsche.de/muenchen/landkreismuenchen/neubiberg-hoehenkirchen-siegertsbrunn-jugend-forscht-bundessieger-li.3492189"
+  },
+  {
+    "publisher": "Bavarian Ministry of Education",
+    "label": "Bavarian winners at the Jugend forscht national final",
+    "kind": "Official press release",
+    "date": "1 June 2026",
+    "project": "innovalloy-deepdive",
+    "url": "https://www.km.bayern.de/meldung/sensationeller-erfolg-bayerischer-schuelerinnen-und-schueler-beim-bundesfinale-von-jugend-forscht"
+  },
+  {
+    "publisher": "Stiftung Jugend forscht",
+    "label": "InnovAlloy DeepDive: national project profile",
+    "kind": "Official project reference",
+    "date": "2026",
+    "project": "innovalloy-deepdive",
+    "url": "https://www.jugend-forscht.de/index.php?cHash=8ce9c0e59516ddbc1af5e058c6744c50&id=262&tx_smsjufoprojects_smsjufprojectdb%5Baction%5D=show&tx_smsjufoprojects_smsjufprojectdb%5Bcontroller%5D=Project&tx_smsjufoprojects_smsjufprojectdb%5Bproject%5D=7816"
+  },
+  {
+    "publisher": "Jugend forscht Bayern",
+    "label": "InnovAlloy DeepDive: Bavarian state-winning project",
+    "kind": "Official project reference",
+    "date": "2026",
+    "project": "innovalloy-deepdive",
+    "url": "https://www.jugend-forscht-bayern.de/landeswettbewerb-bayern/landeswettbewerb-jugend-forscht/gewinner-und-gewinnerinnen-2026/das-sind-die-gewinner-2026/anzeigen/innovalloy-deepdive-analyse-phasenassoziierter-sproedbrueche-in-bi-sn-zn-al-systemen/"
+  },
+  {
+    "publisher": "Stiftung Jugend forscht",
+    "label": "2026 national winners — official booklet (PDF)",
+    "kind": "Official award reference",
+    "date": "2026",
+    "project": "innovalloy-deepdive",
+    "url": "https://www.jugend-forscht.de/fileadmin/user_upload/Downloadcenter/Bundeswettbewerb/Bundeswettbewerb_2026/Jugend_forscht_Bundessiegerinnen_und_Bundessieger_2026.pdf"
+  }
+]
